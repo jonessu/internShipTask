@@ -10,3 +10,5 @@ class UploadimageLoadedState extends UploadimageState {}
 class UploadimageLoadingState extends UploadimageState {}
 
 class UploadimageFailureState extends UploadimageState {}
+
+class SnapBarImageState extends UploadimageState {}

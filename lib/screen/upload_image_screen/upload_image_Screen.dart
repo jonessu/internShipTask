@@ -10,6 +10,7 @@ import 'package:intershiptasks/utils/font_size_resource.dart';
 import 'package:intershiptasks/utils/string_resources.dart';
 import 'package:intershiptasks/widgets/tab_navigaiton.dart';
 import 'package:intershiptasks/widgets/text_widget.dart';
+import 'package:http/http.dart' as http;
 
 int screenId = 4;
 
@@ -34,12 +35,14 @@ class _UPLOADIMAGESCREENState extends State<UPLOADIMAGESCREEN> {
   Future pickImageFromGallery() async {
     try {
       final image = await ImagePicker().pickImage(source: ImageSource.gallery);
-
       if (image == null) return;
       final imageTemporary = File(image.path);
       setState(() {
         this.image = imageTemporary;
       });
+      // var response = await http.post(Uri.parse('https://reqres.in/api/users'),
+      //     body: {"email": "abc@de.com", "password": "abcdf"});
+      // print(response.body);
     } catch (e) {
       print(e);
     }
@@ -48,7 +51,6 @@ class _UPLOADIMAGESCREENState extends State<UPLOADIMAGESCREEN> {
   Future pickImageFromCamera() async {
     try {
       final image = await ImagePicker().pickImage(source: ImageSource.camera);
-
       if (image == null) return;
       final imageTemporary = File(image.path);
       setState(() {
@@ -153,6 +155,39 @@ class _UPLOADIMAGESCREENState extends State<UPLOADIMAGESCREEN> {
                                         SizedBox(width: 20),
                                         Text_Widget(
                                           text: StringResource.PickGallery,
+                                          font_size: SizeResource.size12,
+                                          colour: ColorResource.colorwhite,
+                                          font_family: FontFamilyResource
+                                              .PoppinsSemiBold,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(height: 40),
+                              GestureDetector(
+                                onTap: () {
+                                  uploadimageBloc
+                                      .add(UploadClickBtnEvnet(image: image));
+                                },
+                                child: Container(
+                                  width: double.infinity,
+                                  height: 42,
+                                  decoration: BoxDecoration(
+                                    color: Colors.orangeAccent,
+                                    borderRadius: BorderRadius.circular(15),
+                                  ),
+                                  child: Center(
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Icon(Icons.image_outlined,
+                                            color: ColorResource.colorwhite),
+                                        SizedBox(width: 20),
+                                        Text_Widget(
+                                          text: StringResource.Upload,
                                           font_size: SizeResource.size12,
                                           colour: ColorResource.colorwhite,
                                           font_family: FontFamilyResource

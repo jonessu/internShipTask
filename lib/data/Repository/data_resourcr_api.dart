@@ -5,14 +5,15 @@ import 'package:intershiptasks/data/models/data_models.dart';
 import 'package:http/http.dart' as http;
 
 class PostRepository {
-  Future<List<DataApiModel>> fetchPosts() async {
-    List<DataApiModel> posts = [];
+  static Future<List> fetchPosts() async {
+    List posts = [];
 
     var response =
-        await http.get(Uri.parse('https://jsonplaceholder.typicode.com/users'));
+        await Dio().get('https://jsonplaceholder.typicode.com/albums');
     if (response.statusCode == 200) {
-      var data = json.decode(response.body);
-      data.map((post) => posts.add(DataApiModel.fromJson(post))).toList();
+      //var data = json.decode(response.data);
+      //data.map((post) => posts.add(Welcome.fromJson(post))).toList();
+      posts = response.data;
     }
     return posts;
   }

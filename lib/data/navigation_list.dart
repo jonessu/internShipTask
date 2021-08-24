@@ -1,8 +1,3 @@
-import 'package:flutter/cupertino.dart';
-import 'package:intershiptasks/screen/custom_list_screen/custom_list_Screen.dart';
-import 'package:intershiptasks/screen/loginform_screen/loginform.dart';
-import 'package:intershiptasks/utils/image_resource.dart';
-
 List<dynamic> navigatelist = [
   {'pageId': 1, 'navigateScreen': 'LOGINFORMSCREEN'},
   {'pageId': 2, 'navigateScreen': 'CUSTOMLISTSCREEN'},
@@ -17,4 +12,15 @@ List<dynamic> navigatelist = [
   {'pageId': 12},
   {'pageId': 13},
   {'pageId': 14},
+  {'pageId': 15},
+  {'pageId': 16},
+  {'pageId': 17},
+  {'pageId': 18},
+  {'pageId': 19},
+  {'pageId': 20},
+  {'pageId': 21},
+  {'pageId': 22},
+  {'pageId': 23},
+  {'pageId': 27},
+  {'pageId': 28},
 ];

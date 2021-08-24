@@ -114,16 +114,12 @@ class _WebviewScreenState extends State<WebviewScreen> {
                   ),
                 ],
               ),
-              // body: WebView(
-              //   initialUrl: 'https://www.wikipedia.org/',
-              //   onWebViewCreated: (WebViewController webViewController) {
-              //     _controller.complete(webViewController);
-              //   },
-              // ),
             );
           }
-          return Container(
-            color: ColorResource.colorred,
+          return Scaffold(
+            body: Center(
+              child: CircularProgressIndicator(),
+            ),
           );
         },
       ),

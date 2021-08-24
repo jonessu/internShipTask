@@ -28,12 +28,12 @@ class _SearchlistSCREENState extends State<SearchlistSCREEN> {
   }
 
   void runFilter(String enteredKeyword) {
-    List<Map<String, dynamic>> results = [];
+    List results = [];
     if (enteredKeyword.isEmpty) {
-      results = searchlist;
+      results = searchlistBloc.data;
     } else {
-      results = searchlist
-          .where((user) => user["email"]
+      results = searchlistBloc.data
+          .where((user) => user[StringResource.title]
               .toLowerCase()
               .contains(enteredKeyword.toLowerCase()))
           .toList();
@@ -81,7 +81,7 @@ class _SearchlistSCREENState extends State<SearchlistSCREEN> {
                             child: TextField(
                               onChanged: (value) => runFilter(value),
                               decoration: InputDecoration(
-                                  labelText: 'Search',
+                                  labelText: StringResource.Search,
                                   suffixIcon: Icon(Icons.search)),
                             ),
                           ),
@@ -95,8 +95,9 @@ class _SearchlistSCREENState extends State<SearchlistSCREEN> {
                                 ? ListView.builder(
                                     itemCount: searchlistBloc.foundUsers.length,
                                     itemBuilder: (context, index) => Card(
-                                      key: ValueKey(searchlistBloc
-                                          .foundUsers[index]["id"]),
+                                      key: ValueKey(
+                                          searchlistBloc.foundUsers[index]
+                                              [StringResource.id]),
                                       color: ColorResource.color0066cc,
                                       elevation: 4,
                                       margin:
@@ -104,7 +105,7 @@ class _SearchlistSCREENState extends State<SearchlistSCREEN> {
                                       child: ListTile(
                                         leading: Text_Widget(
                                           text: searchlistBloc.foundUsers[index]
-                                                  ["id"]
+                                                  [StringResource.id]
                                               .toString(),
                                           colour: ColorResource.colorwhite,
                                           font_size: SizeResource.size30,
@@ -113,7 +114,7 @@ class _SearchlistSCREENState extends State<SearchlistSCREEN> {
                                         ),
                                         title: Text_Widget(
                                           text: searchlistBloc.foundUsers[index]
-                                              ['email'],
+                                              [StringResource.title],
                                           colour: ColorResource.colorwhite,
                                           font_size: SizeResource.size20,
                                           font_family: FontFamilyResource
@@ -123,7 +124,7 @@ class _SearchlistSCREENState extends State<SearchlistSCREEN> {
                                     ),
                                   )
                                 : Text(
-                                    'No List found',
+                                    StringResource.NoListFound,
                                     style: TextStyle(fontSize: 24),
                                   ),
                           ),

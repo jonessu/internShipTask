@@ -4,9 +4,10 @@ class ImageResource {
   static const String pollathavan = 'images/pollathavan.jpg';
   static const String vadachennai = 'images/vada_chennai.jpg';
   static const String visaranai = "images/visaranai.jpg";
-  // static const String canada = "images/Ellipse 8.png";
-  // static const String clothing = 'images/clothing.png';
-  // static const String error = 'images/error.png';
+  static const String HeroAnimationLogo = 'images/logo.png';
+  static const String AssetLottieImage1 = 'assets/lottie_view.json';
+  static const String NetworkLottieImage1 =
+      'https://raw.githubusercontent.com/xvrh/lottie-flutter/master/example/assets/Mobilo/A.json';
   // static const String european = "images/Group 1117.png";
   // static const String exchange = 'images/exchange.png';
   // static const String spuneimage = 'images/image.png';

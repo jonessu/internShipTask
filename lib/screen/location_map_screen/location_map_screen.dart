@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:intershiptasks/screen/location_map_screen/bloc/locationmap_bloc.dart';
 import 'package:intershiptasks/utils/color_resource.dart';
 import 'package:intershiptasks/utils/fontFamily_resource.dart';
@@ -19,6 +20,7 @@ class LocationmapScreen extends StatefulWidget {
 
 class _LocationmapScreenState extends State<LocationmapScreen> {
   late LocationmapBloc locationmapBloc;
+
   @override
   void initState() {
     super.initState();
@@ -49,16 +51,47 @@ class _LocationmapScreenState extends State<LocationmapScreen> {
                 ),
               ),
               body: SingleChildScrollView(
-                child: ListView(
+                child: Column(
                   children: [
                     TABNAVIGATION(screenId: screenId),
+                    locationmapBloc.latitude == 0 &&
+                            locationmapBloc.lontitude == 0
+                        ? Container(
+                            decoration: BoxDecoration(
+                                border: Border.all(
+                                    color: ColorResource.color1c1d22)),
+                            margin: EdgeInsets.all(SizeResource.size10),
+                            height: MediaQuery.of(context).size.height - 150,
+                            width: MediaQuery.of(context).size.width,
+                            child: Center(
+                              child: CircularProgressIndicator(),
+                            ),
+                          )
+                        : Container(
+                            decoration: BoxDecoration(
+                                border: Border.all(
+                                    color: ColorResource.color1c1d22)),
+                            margin: EdgeInsets.all(SizeResource.size10),
+                            height: MediaQuery.of(context).size.height - 150,
+                            width: MediaQuery.of(context).size.width,
+                            child: GoogleMap(
+                              mapType: MapType.normal,
+                              initialCameraPosition: CameraPosition(
+                                  target: LatLng(locationmapBloc.latitude,
+                                      locationmapBloc.lontitude),
+                                  zoom: 15),
+                              markers: Set.from(locationmapBloc.allMarker),
+                            ),
+                          )
                   ],
                 ),
               ),
             );
           }
-          return Container(
-            color: ColorResource.colorred,
+          return Scaffold(
+            body: Center(
+              child: CircularProgressIndicator(),
+            ),
           );
         },
       ),
