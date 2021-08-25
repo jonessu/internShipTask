@@ -20,7 +20,7 @@ class exchangeScreen extends StatefulWidget {
 }
 
 class _exchangeScreenState extends State<exchangeScreen> {
-  final fromTextController = TextEditingController();
+  TextEditingController fromTextController = TextEditingController();
   late List currencie;
   String fromCurrencyValue = '0';
   double toCurrencyValue = 0;
@@ -130,8 +130,8 @@ class _exchangeScreenState extends State<exchangeScreen> {
                               ),
                               SizedBox(height: 5),
                               Text_Widget(
-                                text:
-                                    "Find out real-timeExchange rates &\nExchange between your balances.",
+                                text: StringResource
+                                    .FindoutrealtimeExchangeratesExchangebetweenyourbalances,
                                 font_size: 10,
                                 colour: ColorResource.color9d9da9,
                                 font_family: FontFamilyResource.PoppinsMedium,

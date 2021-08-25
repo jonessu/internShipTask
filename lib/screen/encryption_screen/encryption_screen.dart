@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intershiptasks/data/models/encryption_model.dart';
+import 'package:intershiptasks/screen/encryption_screen/aes_encryption_screen.dart';
 import 'package:intershiptasks/screen/encryption_screen/bloc/encryption_bloc.dart';
+import 'package:intershiptasks/screen/encryption_screen/rsa_encrption_screen.dart';
 import 'package:intershiptasks/utils/color_resource.dart';
 import 'package:intershiptasks/utils/fontFamily_resource.dart';
 import 'package:intershiptasks/utils/font_size_resource.dart';
@@ -9,6 +11,7 @@ import 'package:intershiptasks/utils/string_resources.dart';
 import 'package:intershiptasks/widgets/text_widget.dart';
 import 'package:encrypt/encrypt.dart' as encrypt;
 import 'package:rsa_encrypt/rsa_encrypt.dart';
+
 import 'package:pointycastle/pointycastle.dart' as crypto;
 
 int screenId = 16;
@@ -113,209 +116,6 @@ class _EncryptionScreenState extends State<EncryptionScreen> {
             ),
           );
         },
-      ),
-    );
-  }
-}
-
-class aesEncrptDemo extends StatefulWidget {
-  aesEncrptDemo({Key? key}) : super(key: key);
-
-  @override
-  _aesEncrptDemoState createState() => _aesEncrptDemoState();
-}
-
-class _aesEncrptDemoState extends State<aesEncrptDemo> {
-  TextEditingController tec = TextEditingController();
-  var encryptedText, plainText;
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text_Widget(
-          text: "RSA Encrypt",
-          font_size: SizeResource.size20,
-          colour: ColorResource.colorwhite,
-          font_family: FontFamilyResource.PoppinsMedium,
-        ),
-      ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: TextField(
-              controller: tec,
-            ),
-          ),
-          Column(
-            children: [
-              Text(
-                "PLAIN TEXT",
-                style: TextStyle(
-                  fontSize: 25,
-                  color: Colors.blue[400],
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(plainText == null ? "" : plainText),
-              ),
-            ],
-          ),
-          Column(
-            children: [
-              Text(
-                "ENCRYPTED TEXT",
-                style: TextStyle(
-                  fontSize: 25,
-                  color: Colors.blue[400],
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(encryptedText == null
-                    ? ""
-                    : encryptedText is encrypt.Encrypted
-                        ? encryptedText.base64.toString()
-                        : encryptedText.toString()),
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              RaisedButton(
-                onPressed: () {
-                  plainText = tec.text;
-                  setState(() {
-                    encryptedText =
-                        MyEncryptionDecryption.aesEncryptAES(plainText);
-                  });
-
-                  tec.clear();
-                },
-                child: Text("Encrypt"),
-              ),
-              SizedBox(
-                width: 15,
-              ),
-              RaisedButton(
-                onPressed: () {
-                  setState(() {
-                    encryptedText =
-                        MyEncryptionDecryption.aesDecryptAES(encryptedText);
-                    print("Type: " + encryptedText.runtimeType.toString());
-                  });
-                },
-                child: Text("Decrypt"),
-              )
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class rsaEncryptDemo extends StatefulWidget {
-  rsaEncryptDemo({Key? key}) : super(key: key);
-
-  @override
-  _rsaEncryptDemoState createState() => _rsaEncryptDemoState();
-}
-
-class _rsaEncryptDemoState extends State<rsaEncryptDemo> {
-  TextEditingController tec = TextEditingController();
-  var encryptedText, plainText;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text_Widget(
-          text: "RSA Encrypt",
-          font_size: SizeResource.size20,
-          colour: ColorResource.colorwhite,
-          font_family: FontFamilyResource.PoppinsMedium,
-        ),
-      ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: TextField(
-              controller: tec,
-            ),
-          ),
-          Column(
-            children: [
-              Text(
-                "PLAIN TEXT",
-                style: TextStyle(
-                  fontSize: 25,
-                  color: Colors.blue[400],
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(plainText == null ? "" : plainText.toString()),
-              ),
-            ],
-          ),
-          Column(
-            children: [
-              Text(
-                "ENCRYPTED TEXT",
-                style: TextStyle(
-                  fontSize: 25,
-                  color: Colors.blue[400],
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child:
-                    Text(encryptedText == null ? "" : encryptedText.toString()),
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              RaisedButton(
-                onPressed: () {
-                  plainText = tec.text;
-                  setState(() {
-                    encryptedText =
-                        MyEncryptionDecryption.rsaEncryptRSA(plainText);
-                    print("djkldjkd" + encryptedText);
-                  });
-
-                  tec.clear();
-                },
-                child: Text("Encrypt"),
-              ),
-              SizedBox(
-                width: 15,
-              ),
-              RaisedButton(
-                onPressed: () {
-                  setState(() {
-                    encryptedText =
-                        MyEncryptionDecryption.rsaDecryptRSA(encryptedText);
-                    print("Type: " + encryptedText.runtimeType.toString());
-                  });
-                },
-                child: Text("Decrypt"),
-              )
-            ],
-          ),
-        ],
       ),
     );
   }

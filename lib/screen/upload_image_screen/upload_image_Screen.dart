@@ -10,7 +10,7 @@ import 'package:intershiptasks/utils/font_size_resource.dart';
 import 'package:intershiptasks/utils/string_resources.dart';
 import 'package:intershiptasks/widgets/tab_navigaiton.dart';
 import 'package:intershiptasks/widgets/text_widget.dart';
-import 'package:http/http.dart' as http;
+import 'package:share/share.dart';
 
 int screenId = 4;
 
@@ -40,9 +40,6 @@ class _UPLOADIMAGESCREENState extends State<UPLOADIMAGESCREEN> {
       setState(() {
         this.image = imageTemporary;
       });
-      // var response = await http.post(Uri.parse('https://reqres.in/api/users'),
-      //     body: {"email": "abc@de.com", "password": "abcdf"});
-      // print(response.body);
     } catch (e) {
       print(e);
     }
@@ -59,6 +56,12 @@ class _UPLOADIMAGESCREENState extends State<UPLOADIMAGESCREEN> {
     } catch (e) {
       print(e);
     }
+  }
+
+  _onShare(BuildContext context) async {
+    final RenderBox box = context.findRenderObject() as RenderBox;
+    print(image!.path);
+    await Share.shareFiles([image!.path, 'Image']);
   }
 
   @override
@@ -103,7 +106,7 @@ class _UPLOADIMAGESCREENState extends State<UPLOADIMAGESCREEN> {
                                   ),
                                 )
                               : FlutterLogo(size: 160),
-                          SizedBox(height: 180),
+                          SizedBox(height: 120),
                           Column(
                             children: [
                               GestureDetector(
@@ -179,21 +182,35 @@ class _UPLOADIMAGESCREENState extends State<UPLOADIMAGESCREEN> {
                                     borderRadius: BorderRadius.circular(15),
                                   ),
                                   child: Center(
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Icon(Icons.image_outlined,
-                                            color: ColorResource.colorwhite),
-                                        SizedBox(width: 20),
-                                        Text_Widget(
-                                          text: StringResource.Upload,
-                                          font_size: SizeResource.size12,
-                                          colour: ColorResource.colorwhite,
-                                          font_family: FontFamilyResource
-                                              .PoppinsSemiBold,
-                                        ),
-                                      ],
+                                    child: Text_Widget(
+                                      text: StringResource.Upload,
+                                      font_size: SizeResource.size12,
+                                      colour: ColorResource.colorwhite,
+                                      font_family:
+                                          FontFamilyResource.PoppinsSemiBold,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(height: 20),
+                              GestureDetector(
+                                onTap: () {
+                                  Share.shareFiles([image!.path]);
+                                },
+                                child: Container(
+                                  width: double.infinity,
+                                  height: 42,
+                                  decoration: BoxDecoration(
+                                    color: Colors.orangeAccent,
+                                    borderRadius: BorderRadius.circular(15),
+                                  ),
+                                  child: Center(
+                                    child: Text_Widget(
+                                      text: StringResource.Share,
+                                      font_size: SizeResource.size12,
+                                      colour: ColorResource.colorwhite,
+                                      font_family:
+                                          FontFamilyResource.PoppinsSemiBold,
                                     ),
                                   ),
                                 ),

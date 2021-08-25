@@ -38,8 +38,8 @@ class _NotificationScreenState extends State<NotificationScreen> {
 
   Future showNotification() async {
     var androidDetails = new AndroidNotificationDetails(
-      "Channel ID",
-      "Desi programmer",
+      "This is ",
+      "my programmer",
       "This is my channel",
       importance: Importance.max,
     );
@@ -52,7 +52,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
     await flutterLocalNotificationsPlugin.show(
       0,
       "Task",
-      "You created a Task",
+      "I am created a Task",
       generalNotificationDetails,
       payload: "Task",
     );
@@ -104,7 +104,9 @@ class _NotificationScreenState extends State<NotificationScreen> {
     );
   }
 
-  Future notificationSelected(String? payload) async {}
+  Future notificationSelected(String? payload) async {
+    print("Notification Clicked");
+  }
   // showDialog(
   //   context: context,
   //   builder: (context) => AlertDialog(

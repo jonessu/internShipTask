@@ -21,6 +21,11 @@ List<dynamic> navigatelist = [
   {'pageId': 21},
   {'pageId': 22},
   {'pageId': 23},
+  {'pageId': 26},
   {'pageId': 27},
   {'pageId': 28},
+  {'pageId': 31},
+  {'pageId': 32},
+  {'pageId': 33},
+  {'pageId': 34},
 ];

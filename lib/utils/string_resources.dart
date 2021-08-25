@@ -87,18 +87,27 @@ class StringResource {
   static const String ExchangeRatesCalculator = "Exchange Rates Calculator";
   static const String exchange_now = "Exchange Now";
   static const String exchange_money = "Exchange Money";
-  // static const String Enter_Conform_New_Password = "Enter Conform New Password";
-  // static const String Confirm_New_Password = "Confirm New Password";
-  // static const String Continue = "Continue";
-  // static const String Welcome_aboard = "Welcome aboard!";
-  // static const String LOGIN_PIN = "LOGIN PIN";
-  // static const String Enter_OTP = "Enter OTP";
-  // static const String Login = "Login";
-  // static const String forgot_PIN = "forgot PIN?";
-  // static const String Get_started_by_Logging_in = "Get started by Logging in!";
-  // static const String FINGERPRINT_UNLOCK = "FINGERPRINT UNLOCK";
-  // static const String or = "or";
-  // static const String Login_with_Customer_ID = "Login with Customer ID";
+  static const String YoutubePlayer = "Youtube Player";
+  static const String Share = "Share";
+  static const String DownloadfromURL = "Download from URL";
+  static const String StartDownloadinginaboveURL =
+      "Start Downloading in above URL";
+  static const String StartDownloadingDefalutVideo =
+      "Start Downloading Defalut Video";
+  static const String PermissionDeined = "Permission deined";
+  static const String FindoutrealtimeExchangeratesExchangebetweenyourbalances =
+      "Find out real-timeExchange rates &\nExchange between your balances.";
+  static const String InstaLikeStories = "Insta Like Stories";
+  static const String WalkthroughView = "Walkthrough View";
+  static const String Title1 = "Title 1";
+  static const String Content1 = "Content 1";
+  static const String Title2 = "Title 2";
+  static const String Content2 = "Content 2";
+  static const String Title3 = "Title 3";
+  static const String Content3 = "Content 3";
+  static const String Title4 = "Title 4";
+  static const String Content4 = "Content 4";
+  static const String EmailCall = "Email, Call";
   // static const String search = "search";
   // static const String showing_all_new_offers = "showing all new offers";
   // static const String Apollo_Pharmacy = "Apollo Pharmacy";

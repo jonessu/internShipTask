@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:encrypt/encrypt.dart' as encrypt;
 import 'package:encrypt/encrypt.dart';
 import 'package:encrypt/encrypt_io.dart';
+import 'package:flutter/services.dart';
 import 'package:pointycastle/pointycastle.dart' as crypto;
 import 'package:pointycastle/asymmetric/api.dart';
 
@@ -27,8 +28,8 @@ class MyEncryptionDecryption {
   }
 
   //for RSA Encryption
-  static final privKey = '...' as RSAPrivateKey;
-  static final publicKey = "..." as RSAPublicKey;
+  // static final privKey = '...' as RSAPrivateKey;
+  // static final publicKey = "..." as RSAPublicKey;
 
   static rsaEncryptRSA(text) async {
     // final publicKey = await parseKeyFromFile<RSAPublicKey>('test/public.pem');
@@ -49,12 +50,13 @@ class MyEncryptionDecryption {
     // final privKey =
     //     parserpri.parse(privateKeyFile.readAsStringSync()) as RSAPrivateKey;
 
-    final plainText = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit';
-    final encrypter = encrypt.Encrypter(
-        encrypt.RSA(publicKey: publicKey, privateKey: privKey));
-    print(encrypter);
-    final encrypted = encrypter.encrypt("ddkjdl");
-    print(encrypted);
+    final publicPem = await rootBundle.loadString('assets/public.pem');
+    final publicKey = RSAKeyParser().parse(publicPem) as RSAPublicKey;
+    final encrypter = encrypt.Encrypter(encrypt.RSA(publicKey: publicKey));
+    print(publicKey.hashCode);
+    print(encrypter.hashCode);
+    final encrypted = encrypter.encrypt(text);
+    print(encrypted.base64);
 
     return encrypted;
   }

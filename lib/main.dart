@@ -1,16 +1,22 @@
+import 'dart:isolate';
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_locales/flutter_locales.dart';
-
+import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:intershiptasks/screen/loginform_screen/loginform.dart';
+import 'package:intershiptasks/screen/offline_storage_screen/offline_storage_screen.dart';
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await FlutterDownloader.initialize(
+    debug: true,
+  );
   await Locales.init(['en', 'ta', 'ar']);
-
   var initializationSettingsAndroid =
       AndroidInitializationSettings('launch_background');
   var initializationSettingsIOS = IOSInitializationSettings(
@@ -40,7 +46,8 @@ class MyApp extends StatelessWidget {
         localizationsDelegates: Locales.delegates,
         supportedLocales: Locales.supportedLocales,
         locale: locale,
-        home: LOGINFORMSCREEN(),
+        //home: LOGINFORMSCREEN(),
+        home: OfflineStorageScreen(),
       ),
     );
   }

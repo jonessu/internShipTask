@@ -6,8 +6,11 @@ import 'package:intershiptasks/screen/bottom_sheet_scree/bottom_sheet_scree.dart
 import 'package:intershiptasks/screen/contact_access_screen/contact_access_screen.dart';
 import 'package:intershiptasks/screen/custom_list_screen/custom_list_Screen.dart';
 import 'package:intershiptasks/screen/custom_widget_screen.dart/custom_widget_screen.dart';
+import 'package:intershiptasks/screen/download_from_url_screen/download_from_url_screen.dart';
+import 'package:intershiptasks/screen/email_call_screen.dart/email_call_screen.dart';
 import 'package:intershiptasks/screen/encryption_screen/encryption_screen.dart';
 import 'package:intershiptasks/screen/exchange_rates_calculator_screen/exchange_rates_calculator_screen.dart';
+import 'package:intershiptasks/screen/insta_stories_screen/insta_stories_screen.dart';
 import 'package:intershiptasks/screen/localisation_screen/localisation_screen.dart';
 import 'package:intershiptasks/screen/location_map_screen/location_map_screen.dart';
 import 'package:intershiptasks/screen/loginform_screen/loginform.dart';
@@ -19,7 +22,9 @@ import 'package:intershiptasks/screen/shared_preference_screen/shared_preference
 import 'package:intershiptasks/screen/tab_bar_screen/tab_bar_screen.dart';
 import 'package:intershiptasks/screen/tap_to_speak_screen/tap_to_speak_screen.dart';
 import 'package:intershiptasks/screen/upload_image_screen/upload_image_Screen.dart';
+import 'package:intershiptasks/screen/walkthrough_screen/walkthrough_screen.dart';
 import 'package:intershiptasks/screen/web_view_screen/web_view_screen.dart';
+import 'package:intershiptasks/screen/youtube_player_screen.dart/youtube_player_screen.dart';
 import 'package:intershiptasks/utils/color_resource.dart';
 import 'package:intershiptasks/utils/font_size_resource.dart';
 
@@ -114,12 +119,27 @@ class TABNAVIGATION extends StatelessWidget {
                     } else if (navigatelist[index]['pageId'] == 23) {
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => exchangeScreen()));
+                    } else if (navigatelist[index]['pageId'] == 26) {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => DownloadScreen()));
                     } else if (navigatelist[index]['pageId'] == 27) {
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => BiometricScreen()));
                     } else if (navigatelist[index]['pageId'] == 28) {
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => NotificationScreen()));
+                    } else if (navigatelist[index]['pageId'] == 31) {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => YoutubeScreen()));
+                    } else if (navigatelist[index]['pageId'] == 32) {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => WalkthroughScreen()));
+                    } else if (navigatelist[index]['pageId'] == 33) {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => InstastoryScreen()));
+                    } else if (navigatelist[index]['pageId'] == 34) {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => EmailcallScreen()));
                     }
                   },
                   child: Container(
