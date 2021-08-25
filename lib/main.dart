@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
         supportedLocales: Locales.supportedLocales,
         locale: locale,
         //home: LOGINFORMSCREEN(),
-        home: OfflineStorageScreen(),
+        home: LoginformScreen(),
       ),
     );
   }
