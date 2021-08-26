@@ -50,80 +50,77 @@ class _LISTDETAILSSCREENState extends State<LISTDETAILSSCREEN> {
                   font_family: FontFamilyResource.PoppinsMedium,
                 ),
               ),
-              body: SingleChildScrollView(
-                child: ListView(
-                  children: [
-                    TABNAVIGATION(screenId: screenId),
-                    Container(
-                      padding: EdgeInsets.all(SizeResource.size10),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: ColorResource.colorwhite,
-                        border: Border.all(
-                          color: ColorResource.colore3e3e5,
-                          width: 1,
-                        ),
+              body: ListView(
+                children: [
+                  TABNAVIGATION(screenId: screenId),
+                  Container(
+                    padding: EdgeInsets.all(SizeResource.size10),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: ColorResource.colorwhite,
+                      border: Border.all(
+                        color: ColorResource.colore3e3e5,
+                        width: 1,
                       ),
-                      child: Image.asset(
-                          movielist[widget.iD][StringResource.imgPath]),
                     ),
-                    SizedBox(height: SizeResource.size30),
-                    Container(
-                      width: 300,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text_Widget(
-                            text: StringResource.Name +
-                                " : " +
-                                movielist[widget.iD][StringResource.Name],
-                            font_size: SizeResource.size20,
-                            colour: ColorResource.color000000,
-                            font_family: FontFamilyResource.PoppinsSemiBold,
-                          ),
-                          SizedBox(height: 20),
-                          Text_Widget(
-                            text: StringResource.Director +
-                                " : " +
-                                movielist[widget.iD][StringResource.Director],
-                            font_size: SizeResource.size12,
-                            colour: ColorResource.color1c1d22,
-                            font_family: FontFamilyResource.PoppinsMedium,
-                          ),
-                          SizedBox(height: 10),
-                          Text_Widget(
-                            text: StringResource.MusicDirector +
-                                " : " +
-                                movielist[widget.iD]
-                                    [StringResource.MusicDirector],
-                            font_size: SizeResource.size12,
-                            colour: ColorResource.color1c1d22,
-                            font_family: FontFamilyResource.PoppinsMedium,
-                          ),
-                          SizedBox(height: 10),
-                          Text_Widget(
-                            text: StringResource.Production +
-                                " : " +
-                                movielist[widget.iD][StringResource.Production],
-                            font_size: SizeResource.size12,
-                            colour: ColorResource.color1c1d22,
-                            font_family: FontFamilyResource.PoppinsMedium,
-                          ),
-                          SizedBox(height: 10),
-                          Text_Widget(
-                            text: StringResource.ReleaseDate +
-                                " : " +
-                                movielist[widget.iD]
-                                    [StringResource.ReleaseDate],
-                            font_size: SizeResource.size12,
-                            colour: ColorResource.color1c1d22,
-                            font_family: FontFamilyResource.PoppinsMedium,
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
+                    child: Image.asset(
+                        movielist[widget.iD][StringResource.imgPath]),
+                  ),
+                  SizedBox(height: SizeResource.size30),
+                  Container(
+                    width: 300,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text_Widget(
+                          text: StringResource.Name +
+                              " : " +
+                              movielist[widget.iD][StringResource.Name],
+                          font_size: SizeResource.size20,
+                          colour: ColorResource.color000000,
+                          font_family: FontFamilyResource.PoppinsSemiBold,
+                        ),
+                        SizedBox(height: 20),
+                        Text_Widget(
+                          text: StringResource.Director +
+                              " : " +
+                              movielist[widget.iD][StringResource.Director],
+                          font_size: SizeResource.size12,
+                          colour: ColorResource.color1c1d22,
+                          font_family: FontFamilyResource.PoppinsMedium,
+                        ),
+                        SizedBox(height: 10),
+                        Text_Widget(
+                          text: StringResource.MusicDirector +
+                              " : " +
+                              movielist[widget.iD]
+                                  [StringResource.MusicDirector],
+                          font_size: SizeResource.size12,
+                          colour: ColorResource.color1c1d22,
+                          font_family: FontFamilyResource.PoppinsMedium,
+                        ),
+                        SizedBox(height: 10),
+                        Text_Widget(
+                          text: StringResource.Production +
+                              " : " +
+                              movielist[widget.iD][StringResource.Production],
+                          font_size: SizeResource.size12,
+                          colour: ColorResource.color1c1d22,
+                          font_family: FontFamilyResource.PoppinsMedium,
+                        ),
+                        SizedBox(height: 10),
+                        Text_Widget(
+                          text: StringResource.ReleaseDate +
+                              " : " +
+                              movielist[widget.iD][StringResource.ReleaseDate],
+                          font_size: SizeResource.size12,
+                          colour: ColorResource.color1c1d22,
+                          font_family: FontFamilyResource.PoppinsMedium,
+                        ),
+                      ],
+                    ),
+                  )
+                ],
               ),
             );
           }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intershiptasks/screen/biometric_access_screen/bloc/biometric_bloc.dart';
 import 'package:intershiptasks/utils/color_resource.dart';
@@ -19,36 +20,69 @@ class BiometricScreen extends StatefulWidget {
 
 class _BiometricScreenState extends State<BiometricScreen> {
   late BiometricBloc biometricBloc;
-  final LocalAuthentication auth = LocalAuthentication();
+  LocalAuthentication auth = LocalAuthentication();
+
+  late bool _canCheckBiometric = false;
+  late List<BiometricType> availableBiometrics = [];
+  String autherized = "Not autherized";
 
   @override
   void initState() {
     super.initState();
     biometricBloc = BiometricBloc()..add(BiometricInitialEvent());
+    _checkBiometric();
+    _getAvailableBiometric();
   }
 
-  Future<void> authorizeNow() async {
-    bool isAuthorized = false;
+  Future<void> _checkBiometric() async {
+    bool canCheckBiometric;
     try {
-      isAuthorized = await auth.authenticate(
-        localizedReason: "Please authenticate to complete your transaction",
-        useErrorDialogs: true,
-        stickyAuth: true,
-        biometricOnly: true,
-      );
-    } catch (e) {
+      bool canCheckBiometric = await auth.canCheckBiometrics;
+    } on PlatformException catch (e) {
       print(e);
     }
-
-    // if (!mounted) return;
-
+    if (!mounted) return;
     // setState(() {
-    //   if (isAuthorized) {
-    //     print("Authorized");
-    //   } else {
-    //     print("Not Authorized");
-    //   }
+    //   _canCheckBiometric = canCheckBiometric;
     // });
+  }
+
+  Future<void> _getAvailableBiometric() async {
+    List<BiometricType> _availableBiometrics;
+    try {
+      availableBiometrics = await auth.getAvailableBiometrics();
+    } on PlatformException catch (e) {
+      print(e);
+    }
+    setState(() {
+      _availableBiometrics = availableBiometrics;
+    });
+    print(availableBiometrics);
+  }
+
+  Future<void> _authenticate() async {
+    bool authenticated = false;
+
+    try {
+      authenticated = await auth.authenticateWithBiometrics(
+        localizedReason: 'Scan Your Fingerprint to autheticate',
+        useErrorDialogs: true,
+        stickyAuth: true,
+      );
+    } on PlatformException catch (e) {
+      print(e);
+    }
+    if (!mounted)
+      return setState(() {
+        autherized =
+            authenticated ? "Authorized Success" : "Failed to Authenticate";
+        if (authenticated) {
+          // Navigator.push(context,
+          //     MaterialPageRoute(builder: (context) => LoginValidation()));
+        }
+
+        print(autherized);
+      });
   }
 
   @override
@@ -74,27 +108,29 @@ class _BiometricScreenState extends State<BiometricScreen> {
                   font_family: FontFamilyResource.PoppinsMedium,
                 ),
               ),
-              body: GestureDetector(
-                onTap: authorizeNow,
-                child: Container(
-                  width: 200,
-                  height: 200,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border.all(
-                      color: ColorResource.colorb9b9bf,
-                      width: 1,
+              body: Center(
+                child: GestureDetector(
+                  onTap: _authenticate,
+                  child: Container(
+                    width: 200,
+                    height: 200,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border.all(
+                        color: ColorResource.colorb9b9bf,
+                        width: 1,
+                      ),
+                      borderRadius: BorderRadius.circular(10),
                     ),
-                    borderRadius: BorderRadius.circular(10),
+                    child: Text("dlkdjkd"),
+                    // child: Center(
+                    //   child: Image.asset(
+                    //     ImageResource.fingerprint,
+                    //     width: 80,
+                    //     height: 80,
+                    //   ),
+                    // ),
                   ),
-                  child: Text("dlkdjkd"),
-                  // child: Center(
-                  //   child: Image.asset(
-                  //     ImageResource.fingerprint,
-                  //     width: 80,
-                  //     height: 80,
-                  //   ),
-                  // ),
                 ),
               ),
             );

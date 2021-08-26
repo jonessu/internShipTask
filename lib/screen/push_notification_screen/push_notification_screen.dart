@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intershiptasks/main.dart';
@@ -34,6 +35,47 @@ class _NotificationScreenState extends State<NotificationScreen> {
     // flutterNotification = new FlutterLocalNotificationsPlugin();
     // flutterNotification.initialize(initilizationsSettings,
     //     onSelectNotification: notificationSelected);
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      RemoteNotification? notification = message.notification;
+      AndroidNotification? android = message.notification?.android;
+      if (notification != null && android != null) {
+        flutterLocalNotificationsPlugin.show(
+            notification.hashCode,
+            notification.title,
+            notification.body,
+            NotificationDetails(
+              android: AndroidNotificationDetails(
+                channel.id,
+                channel.name,
+                channel.description,
+                color: Colors.blue,
+                playSound: true,
+                icon: '@mipmap/ic_launcher',
+              ),
+            ));
+      }
+    });
+
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+      print('A new onMessageOpenedApp event was published!');
+      RemoteNotification? notification = message.notification;
+      AndroidNotification? android = message.notification?.android;
+      if (notification != null && android != null) {
+        showDialog(
+            context: context,
+            builder: (_) {
+              return AlertDialog(
+                title: Text("title"),
+                content: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [Text("notification.body")],
+                  ),
+                ),
+              );
+            });
+      }
+    });
   }
 
   Future showNotification() async {
@@ -56,6 +98,25 @@ class _NotificationScreenState extends State<NotificationScreen> {
       generalNotificationDetails,
       payload: "Task",
     );
+  }
+
+  int _counter = 0;
+
+  void show1Notification() {
+    setState(() {
+      _counter++;
+    });
+    flutterLocalNotificationsPlugin.show(
+        0,
+        "Testing $_counter",
+        "How you doin ?",
+        NotificationDetails(
+            android: AndroidNotificationDetails(
+                channel.id, channel.name, channel.description,
+                importance: Importance.high,
+                color: Colors.blue,
+                playSound: true,
+                icon: '@mipmap/ic_launcher')));
   }
 
   @override
@@ -81,16 +142,25 @@ class _NotificationScreenState extends State<NotificationScreen> {
                   font_family: FontFamilyResource.PoppinsMedium,
                 ),
               ),
+              // body:
               body: Center(
-                child: RaisedButton(
-                  onPressed: showNotification,
-                  child: Text_Widget(
-                    text: "Notification",
-                    font_size: SizeResource.size20,
-                    colour: ColorResource.color1c1d22,
-                    font_family: FontFamilyResource.PoppinsSemiBold,
-                  ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      'You have pushed the button this many times:',
+                    ),
+                    Text(
+                      '$_counter',
+                      style: Theme.of(context).textTheme.headline4,
+                    ),
+                  ],
                 ),
+              ),
+              floatingActionButton: FloatingActionButton(
+                onPressed: show1Notification,
+                tooltip: 'Increment',
+                child: Icon(Icons.add),
               ),
             );
           }
