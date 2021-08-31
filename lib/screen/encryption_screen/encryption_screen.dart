@@ -86,7 +86,7 @@ class _EncryptionScreenState extends State<EncryptionScreen> {
                     GestureDetector(
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => rsaEncryptDemo()));
+                            builder: (context) => Encryptionspage()));
                       },
                       child: Container(
                         width: double.infinity,

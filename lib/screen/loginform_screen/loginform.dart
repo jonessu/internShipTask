@@ -24,7 +24,7 @@ class _LOGINFORMSCREENState extends State<LOGINFORMSCREEN> {
   late LoginformBloc loginformBloc;
 
   late TextEditingController emailController;
-  late TextEditingController passController;
+  late TextEditingController phoneController;
   late TextEditingController usernameController;
 
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
@@ -35,7 +35,7 @@ class _LOGINFORMSCREENState extends State<LOGINFORMSCREEN> {
     loginformBloc = LoginformBloc()..add(LoginformInitialEvent());
     usernameController = new TextEditingController();
     emailController = new TextEditingController();
-    passController = new TextEditingController();
+    phoneController = new TextEditingController();
   }
 
   @override
@@ -144,10 +144,10 @@ class _LOGINFORMSCREENState extends State<LOGINFORMSCREEN> {
                                   padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
                                   child: TextFormField(
                                     keyboardType: TextInputType.number,
-                                    controller: passController,
+                                    controller: phoneController,
                                     decoration: InputDecoration(
                                       border: OutlineInputBorder(),
-                                      labelText: StringResource.Password,
+                                      labelText: StringResource.PhoneNumber,
                                     ),
                                     style: TextStyle(
                                       fontSize: 13,

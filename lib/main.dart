@@ -1,13 +1,18 @@
 import 'dart:isolate';
 import 'dart:ui';
 
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_instagram_stories/flutter_instagram_stories.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_locales/flutter_locales.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
+import 'package:intershiptasks/data/models/story_model.dart';
 import 'package:intershiptasks/screen/loginform_screen/loginform.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:video_player/video_player.dart';
 
 const AndroidNotificationChannel channel = AndroidNotificationChannel(
     'high_importance_channel', // id
@@ -66,7 +71,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return LocaleBuilder(
       builder: (locale) => MaterialApp(
-        title: 'Flutter Locales',
         localizationsDelegates: Locales.delegates,
         supportedLocales: Locales.supportedLocales,
         locale: locale,

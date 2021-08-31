@@ -5,6 +5,7 @@ import 'package:intershiptasks/screen/biometric_access_screen/bloc/biometric_blo
 import 'package:intershiptasks/utils/color_resource.dart';
 import 'package:intershiptasks/utils/fontFamily_resource.dart';
 import 'package:intershiptasks/utils/font_size_resource.dart';
+import 'package:intershiptasks/utils/image_resource.dart';
 import 'package:intershiptasks/utils/string_resources.dart';
 import 'package:intershiptasks/widgets/text_widget.dart';
 import 'package:local_auth/local_auth.dart';
@@ -69,20 +70,13 @@ class _BiometricScreenState extends State<BiometricScreen> {
         useErrorDialogs: true,
         stickyAuth: true,
       );
+      print(authenticated);
+      if (authenticated == true) {
+        Navigator.pop(context);
+      }
     } on PlatformException catch (e) {
       print(e);
     }
-    if (!mounted)
-      return setState(() {
-        autherized =
-            authenticated ? "Authorized Success" : "Failed to Authenticate";
-        if (authenticated) {
-          // Navigator.push(context,
-          //     MaterialPageRoute(builder: (context) => LoginValidation()));
-        }
-
-        print(autherized);
-      });
   }
 
   @override
@@ -112,25 +106,25 @@ class _BiometricScreenState extends State<BiometricScreen> {
                 child: GestureDetector(
                   onTap: _authenticate,
                   child: Container(
-                    width: 200,
-                    height: 200,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      border: Border.all(
-                        color: ColorResource.colorb9b9bf,
-                        width: 1,
+                      width: 200,
+                      height: 200,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        border: Border.all(
+                          color: ColorResource.colorb9b9bf,
+                          width: 1,
+                        ),
+                        borderRadius: BorderRadius.circular(10),
                       ),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Text("dlkdjkd"),
-                    // child: Center(
-                    //   child: Image.asset(
-                    //     ImageResource.fingerprint,
-                    //     width: 80,
-                    //     height: 80,
-                    //   ),
-                    // ),
-                  ),
+                      child: Image.asset(ImageResource.fingerprint)
+                      // child: Center(
+                      //   child: Image.asset(
+                      //     ImageResource.fingerprint,
+                      //     width: 80,
+                      //     height: 80,
+                      //   ),
+                      // ),
+                      ),
                 ),
               ),
             );

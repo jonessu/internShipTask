@@ -108,12 +108,11 @@ class StringResource {
   static const String Title4 = "Title 4";
   static const String Content4 = "Content 4";
   static const String EmailCall = "Email, Call";
-  // static const String search = "search";
-  // static const String showing_all_new_offers = "showing all new offers";
-  // static const String Apollo_Pharmacy = "Apollo Pharmacy";
-  // static const String Apollo_Pharmacy_Discount =
-  //     "Up to 15% off* at Apollo Pharmacy";
-  // static const String Offers_from_Visa = "Offers from Visa";
+  static const String PhoneNumber = "Phone Number";
+  static const String LocationAccess = "Location Access";
+  static const String InstaStoryShare = "Insta Story Share";
+  static const String red = "Red";
+  static const String grey = "Grey";
   // static const String menu = "menu";
   // static const String edit_profile = "edit profile";
   // static const String contact_us = "contact us";

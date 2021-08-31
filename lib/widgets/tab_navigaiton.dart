@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intershiptasks/data/models/story_model.dart';
 import 'package:intershiptasks/data/navigation_list.dart';
 import 'package:intershiptasks/screen/animation_screen/animation_screen.dart';
 import 'package:intershiptasks/screen/biometric_access_screen/biometric_access_screen.dart';
@@ -11,6 +12,8 @@ import 'package:intershiptasks/screen/email_call_screen.dart/email_call_screen.d
 import 'package:intershiptasks/screen/encryption_screen/encryption_screen.dart';
 import 'package:intershiptasks/screen/exchange_rates_calculator_screen/exchange_rates_calculator_screen.dart';
 import 'package:intershiptasks/screen/insta_stories_screen/insta_stories_screen.dart';
+import 'package:intershiptasks/screen/insta_story_page_navigate.dart';
+import 'package:intershiptasks/screen/insta_story_share/insta_story_share.dart';
 import 'package:intershiptasks/screen/localisation_screen/localisation_screen.dart';
 import 'package:intershiptasks/screen/location_map_screen/location_map_screen.dart';
 import 'package:intershiptasks/screen/loginform_screen/loginform.dart';
@@ -140,6 +143,14 @@ class TABNAVIGATION extends StatelessWidget {
                     } else if (navigatelist[index]['pageId'] == 34) {
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => EmailcallScreen()));
+                    } else if (navigatelist[index]['pageId'] == 35) {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => StoryshareScreen()));
+                    } else if (navigatelist[index]['pageId'] == 36) {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => StoryScreen(
+                                stories1: stories1,
+                              )));
                     }
                   },
                   child: Container(

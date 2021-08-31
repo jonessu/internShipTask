@@ -2,9 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:intershiptasks/data/models/story_model.dart';
+import 'package:intershiptasks/screen/insta_stories_screen/insta_stories_screen.dart';
 import 'package:intershiptasks/utils/color_resource.dart';
 import 'package:intershiptasks/utils/fontFamily_resource.dart';
 import 'package:intershiptasks/utils/font_size_resource.dart';
+import 'package:intershiptasks/widgets/story_button.dart';
 import 'package:intershiptasks/widgets/text_widget.dart';
 
 class StoryView extends StatefulWidget {
@@ -33,6 +35,7 @@ class _StoryViewState extends State<StoryView> {
   @override
   void initState() {
     startTimer();
+    print(widget.story);
     super.initState();
   }
 
@@ -42,7 +45,14 @@ class _StoryViewState extends State<StoryView> {
       body: GestureDetector(
         onTap: () {
           timer.cancel();
-          Navigator.pop(context);
+          if (widget.story.id == 4) {
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => InstastoryScreen()));
+          } else {
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) =>
+                    StoryView(story: stories[widget.story.id + 1])));
+          }
         },
         child: Stack(
           children: [

@@ -22,16 +22,7 @@ class InstastoryScreen extends StatefulWidget {
 
 class _InstastoryScreenState extends State<InstastoryScreen> {
   late InstastoryBloc instastoryBloc;
-  List<StoryData> stories = [
-    StoryData("Jones", "https://randomuser.me/api/portraits/med/men/75.jpg",
-        "https://images.unsplash.com/photo-1626549879159-280fff8c5cd6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=934&q=80"),
-    StoryData("Sunil", "https://randomuser.me/api/portraits/med/men/75.jpg",
-        "https://images.unsplash.com/photo-1626549879159-280fff8c5cd6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=934&q=80"),
-    StoryData("Jones", "https://randomuser.me/api/portraits/med/men/75.jpg",
-        "https://images.unsplash.com/photo-1626549879159-280fff8c5cd6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=934&q=80"),
-    StoryData("Sunil", "https://randomuser.me/api/portraits/med/men/75.jpg",
-        "https://images.unsplash.com/photo-1626549879159-280fff8c5cd6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=934&q=80"),
-  ];
+
   bool isLiked = false;
   bool isHeartAnimating = false;
   late Timer timer;
@@ -72,19 +63,23 @@ class _InstastoryScreenState extends State<InstastoryScreen> {
                       Container(
                         width: double.infinity,
                         height: 110.0,
-                        child: ListView(
-                          scrollDirection: Axis.horizontal,
-                          children: [
-                            storyButton(stories[0], context),
-                            storyButton(stories[1], context),
-                            storyButton(stories[2], context),
-                            storyButton(stories[3], context),
-                            storyButton(stories[0], context),
-                            storyButton(stories[1], context),
-                            storyButton(stories[2], context),
-                            storyButton(stories[3], context),
-                          ],
-                        ),
+                        child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: stories.length,
+                            itemBuilder: (context, index) {
+                              return storyButton(stories[index], context);
+                            }
+                            // children: [
+                            //   storyButton(stories[0], context),
+                            //   storyButton(stories[1], context),
+                            //   storyButton(stories[2], context),
+                            //   storyButton(stories[3], context),
+                            //   storyButton(stories[0], context),
+                            //   storyButton(stories[1], context),
+                            //   storyButton(stories[2], context),
+                            //   storyButton(stories[3], context),
+                            // ],
+                            ),
                       ),
                       Divider(height: 1),
                       SizedBox(height: 10.0),

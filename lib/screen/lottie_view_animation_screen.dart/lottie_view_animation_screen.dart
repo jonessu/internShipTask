@@ -50,23 +50,25 @@ class _LottieviewScreenState extends State<LottieviewScreen> {
                   font_family: FontFamilyResource.PoppinsMedium,
                 ),
               ),
-              body: Center(
-                child: Column(
-                  children: [
-                    TABNAVIGATION(screenId: screenId),
-                    Container(
-                      width: 300,
-                      height: 300,
-                      child: Lottie.asset(ImageResource.AssetLottieImage1),
-                    ),
-                    Container(
-                      width: 300,
-                      height: 300,
-                      child: Lottie.network(
-                        ImageResource.NetworkLottieImage1,
+              body: SingleChildScrollView(
+                child: Center(
+                  child: Column(
+                    children: [
+                      TABNAVIGATION(screenId: screenId),
+                      Container(
+                        width: 300,
+                        height: 300,
+                        child: Lottie.asset(ImageResource.AssetLottieImage1),
                       ),
-                    ),
-                  ],
+                      Container(
+                        width: 300,
+                        height: 300,
+                        child: Lottie.network(
+                          ImageResource.NetworkLottieImage1,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             );

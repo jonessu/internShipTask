@@ -44,7 +44,7 @@ class _LocationmapScreenState extends State<LocationmapScreen> {
             return Scaffold(
               appBar: AppBar(
                 title: Text_Widget(
-                  text: StringResource.ListDetail,
+                  text: StringResource.LocationAccess,
                   font_size: SizeResource.size20,
                   colour: ColorResource.colorwhite,
                   font_family: FontFamilyResource.PoppinsMedium,

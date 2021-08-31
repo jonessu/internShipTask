@@ -20,12 +20,27 @@ class CUSTOMWIDGETSCREEN extends StatefulWidget {
 
 class _CUSTOMWIDGETSCREENState extends State<CUSTOMWIDGETSCREEN> {
   bool switchValue = false;
+  Color bulbColor = ColorResource.color000000;
 
   late CustomwidgetBloc customwidgetBloc;
   @override
   void initState() {
     super.initState();
     customwidgetBloc = CustomwidgetBloc()..add(CustomwidgetInitialEvent());
+  }
+
+  final checkBoxList = [
+    CheckBoxModel(title: 'CheckBox 1'),
+    CheckBoxModel(title: 'CheckBox 2'),
+    CheckBoxModel(title: 'CheckBox 3'),
+    CheckBoxModel(title: 'CheckBox 4'),
+  ];
+
+  onItemClicked(CheckBoxModel ckbitem) {
+    final newValue = !ckbitem.value;
+    setState(() {
+      ckbitem.value = newValue;
+    });
   }
 
   @override
@@ -98,13 +113,48 @@ class _CUSTOMWIDGETSCREENState extends State<CUSTOMWIDGETSCREEN> {
                             font_family: FontFamilyResource.PoppinsSemiBold),
                       ),
                       SizedBox(height: SizeResource.size10),
-                      CUSTOMRIDIOWIDGET(
-                        value: 1,
-                        textValue: StringResource.Male,
+                      Icon(
+                        Icons.lightbulb_outline,
+                        size: 100,
+                        color: bulbColor,
                       ),
-                      CUSTOMRIDIOWIDGET(
-                        value: 2,
-                        textValue: StringResource.Female,
+                      Container(
+                        width: 150,
+                        child: Row(
+                          children: [
+                            Radio(
+                              value: Colors.red,
+                              groupValue: bulbColor,
+                              onChanged: (val) {
+                                setState(() {
+                                  bulbColor = ColorResource.colorred;
+                                });
+                              },
+                            ),
+                            Text(
+                              StringResource.red,
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        width: 150,
+                        child: Row(
+                          children: [
+                            Radio(
+                              value: Colors.grey,
+                              groupValue: bulbColor,
+                              onChanged: (val) {
+                                setState(() {
+                                  bulbColor = ColorResource.colorgrey;
+                                });
+                              },
+                            ),
+                            Text(
+                              StringResource.grey,
+                            ),
+                          ],
+                        ),
                       ),
                       SizedBox(height: SizeResource.size20),
                       Align(
@@ -117,10 +167,24 @@ class _CUSTOMWIDGETSCREENState extends State<CUSTOMWIDGETSCREEN> {
                         ),
                       ),
                       SizedBox(height: SizeResource.size10),
-                      CUSTOMCHECKBOXWIDGET(
-                          value: true, textValue: StringResource.Playing),
-                      CUSTOMCHECKBOXWIDGET(
-                          value: false, textValue: StringResource.HearingMusic),
+                      ...checkBoxList
+                          .map(
+                            (item) => ListTile(
+                              onTap: () => onItemClicked(item),
+                              leading: Checkbox(
+                                value: item.value,
+                                onChanged: (value) => onItemClicked(item),
+                              ),
+                              title: Text(
+                                item.title,
+                                style: TextStyle(
+                                  fontFamily: 'Poppins',
+                                  fontSize: 20,
+                                ),
+                              ),
+                            ),
+                          )
+                          .toList(),
                     ],
                   ),
                 ),
@@ -136,31 +200,10 @@ class _CUSTOMWIDGETSCREENState extends State<CUSTOMWIDGETSCREEN> {
   }
 }
 
-class CUSTOMCHECKBOXWIDGET extends StatelessWidget {
-  final bool value;
-  final String textValue;
-  const CUSTOMCHECKBOXWIDGET({required this.value, required this.textValue});
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Text(
-          textValue,
-          style: TextStyle(
-            color: ColorResource.color616267,
-            //Color0xff616267),
-            fontSize: 13,
-            fontFamily: FontFamilyResource.PoppinsMedium,
-          ),
-        ),
-        Checkbox(
-            checkColor: ColorResource.color0066cc,
-            value: value,
-            onChanged: (bool? value) {})
-      ],
-    );
-  }
+class CheckBoxModel {
+  String title;
+  bool value;
+  CheckBoxModel({required this.title, this.value = false});
 }
 
 class CUSTOMRIDIOWIDGET extends StatelessWidget {

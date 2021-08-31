@@ -8,7 +8,7 @@ class ImageResource {
   static const String AssetLottieImage1 = 'assets/lottie_view.json';
   static const String NetworkLottieImage1 =
       'https://raw.githubusercontent.com/xvrh/lottie-flutter/master/example/assets/Mobilo/A.json';
-  // static const String european = "images/Group 1117.png";
+  static const String fingerprint = "images/fingerprint.png";
   // static const String exchange = 'images/exchange.png';
   // static const String spuneimage = 'images/image.png';
   // static const String important = "images/important.png";
